@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(bodyParser.json());
 // router.use(usersRouter);
 
-router.get('/', (req, res) => {
+router.get('/api', (req, res) => {
   res.status(200).json({ message: 'Hello World !' });
 });
 
