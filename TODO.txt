@@ -1,9 +1,18 @@
--- DOING --
-o Installer Sequelize
+--- DOING ---
+o Installer Sequelize et Sequelize-cli
 o Créer la base de données
-o Configurer les models / migrations / config.json / ...
+o Configurer les models / migrations / config.json / ... avec les bonnes associations
+o Créer le controller usersCtrl.js de POST/api/signup et POST /api/signin
+o Créer la route user.js
+    201 : Si la requête est un succès (nouvelle donnée créée en base)
+    400 : S'il y a une erreur dans l'input
+    409 : Si un utilisateur avec le même email exite déjà en base
+o Créer les seeders (cities)
+o Créer le controller placesCtrl.js
+o Créer le controller citiesCtrl.js
+o Créer le controller bookingsCtrl.js
 
--- DONE --
+--- DONE ---
 x Créer le repository sur GitHub
 x Clonner repository + npm init
 x Créer le fichier .gitignore + node_modules / .env
