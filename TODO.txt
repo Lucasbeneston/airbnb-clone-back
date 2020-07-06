@@ -1,14 +1,6 @@
 --- DOING ---
-o Configurer les models / migrations / config.json / ... avec les bonnes associations
-o Créer le controller usersCtrl.js de POST/api/signup et POST /api/signin
-o Créer la route user.js
-    201 : Si la requête est un succès (nouvelle donnée créée en base)
-    400 : S'il y a une erreur dans l'input
-    409 : Si un utilisateur avec le même email exite déjà en base
-o Créer les seeders (cities)
-o Créer le controller placesCtrl.js
-o Créer le controller citiesCtrl.js
-o Créer le controller bookingsCtrl.js
+o Faire le PATCH /api/places/{placeId}
+o Faire le DELETE /api/places/{placeId}
 
 --- DONE ---
 x Installer Sequelize et Sequelize-cli
@@ -25,6 +17,12 @@ x Le serveur se lance sur le port 8042
 x Le serveur utilise le routeur principal et préfixe toutes les routes par /api
 x Le routeur principal définit la route GET /api
 x Le routeur principal définit une route pour les erreurs 404
+x Configurer les models / migrations / config.json / ... avec les bonnes associations
+x Créer les routes user.js / place.js / city.js
+x Créer les seeders (cities)
+x Créer le controller placesCtrl.js
+x Créer le controller citiesCtrl.js
+x Créer le controller usersCtrl.js
 
 
 --- Ressources ---
@@ -41,6 +39,7 @@ x Le routeur principal définit une route pour les erreurs 404
 > https://discordapp.com/channels/684395136175702065/686873224117485579/727877472850542663
 
 
+--- Lignes de commandes ---
 - Pour créer un model / migration User
 npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string,password:string,role:string
 
