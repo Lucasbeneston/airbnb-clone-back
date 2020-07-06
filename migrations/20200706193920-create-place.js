@@ -7,10 +7,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
       name: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -37,21 +33,9 @@ module.exports = {
       },
       cityId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          allowNull: false,
-          model: {
-            tableName: 'Cities',
-          },
-          key: 'id',
-        },
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          allowNull: false,
-          model: {
-            tableName: 'Users',
-          },
+          model: 'Cities',
           key: 'id',
         },
       },
