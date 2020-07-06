@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
         },
       });
-      this.hasMany(models.Place, {
-        foreignKey: 'userId',
-      });
+      // this.hasMany(models.Place, {
+      //   foreignKey: 'userId',
+      // });
     }
   }
   User.init(

@@ -29,4 +29,15 @@ module.exports = {
       attributes: ['id', 'name', 'description', 'rooms', 'bathrooms', 'maxGuests', 'priceByNight'],
     });
   },
+
+  getPlaceById: (placeId) => {
+    return Place.findByPk(placeId, {
+      include: [
+        {
+          model: City,
+          attributes: ['name'],
+        },
+      ],
+    });
+  },
 };

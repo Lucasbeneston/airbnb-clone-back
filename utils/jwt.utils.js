@@ -6,10 +6,10 @@ const JWT_SIGN_SECRET =
 module.exports = {
   generateTokenForUser: (userData) => {
     return jwt.sign(
-      {
-        userId: userData.id,
-        userRole: userData.role,
-      },
+      // {
+      //   userId: userData.id,
+      //   userRole: userData.role,
+      // },
       JWT_SIGN_SECRET,
       {
         expiresIn: '1h',
