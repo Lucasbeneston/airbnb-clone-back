@@ -25,3 +25,14 @@ x Le serveur se lance sur le port 8042
 x Le serveur utilise le routeur principal et préfixe toutes les routes par /api
 x Le routeur principal définit la route GET /api
 x Le routeur principal définit une route pour les erreurs 404
+
+
+--- Ressources ---
+- Configurer ESLint :
+> https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a
+
+- Configurer Sequelize :
+> https://sequelize.org/master/manual/getting-started.html
+> https://sequelize.org/master/manual/migrations.html
+> https://www.npmjs.com/package/sequelize-cli
+> https://github.com/PierreGambarotto/tuto_sequelize
