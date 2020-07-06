@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 // router.use(usersRouter);
 
 router.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello World!' });
+  res.status(200).json({ message: 'Hello World !' });
 });
 
 router.get('*', (req, res) => {

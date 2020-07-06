@@ -1,0 +1,18 @@
+-- DOING --
+o Installer Sequelize
+o Créer la base de données
+o Configurer les models / migrations / config.json / ...
+
+-- DONE --
+x Créer le repository sur GitHub
+x Clonner repository + npm init
+x Créer le fichier .gitignore + node_modules / .env
+x Configurer ESLint airbnb-base
+x Installer nodemon
+x Installer express
+x Installer body-parser
+x Installer le logger morgan
+x Le serveur se lance sur le port 8042
+x Le serveur utilise le routeur principal et préfixe toutes les routes par /api
+x Le routeur principal définit la route GET /api
+x Le routeur principal définit une route pour les erreurs 404
