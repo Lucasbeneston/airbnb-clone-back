@@ -1,6 +1,4 @@
 --- DOING ---
-o Installer Sequelize et Sequelize-cli
-o Créer la base de données
 o Configurer les models / migrations / config.json / ... avec les bonnes associations
 o Créer le controller usersCtrl.js de POST/api/signup et POST /api/signin
 o Créer la route user.js
@@ -13,6 +11,8 @@ o Créer le controller citiesCtrl.js
 o Créer le controller bookingsCtrl.js
 
 --- DONE ---
+x Installer Sequelize et Sequelize-cli
+x Créer la base de données
 x Créer le repository sur GitHub
 x Clonner repository + npm init
 x Créer le fichier .gitignore + node_modules / .env
@@ -36,3 +36,19 @@ x Le routeur principal définit une route pour les erreurs 404
 > https://sequelize.org/master/manual/migrations.html
 > https://www.npmjs.com/package/sequelize-cli
 > https://github.com/PierreGambarotto/tuto_sequelize
+
+- Seeds cities (/!\ URL a utiliser dans Discord /!\): 
+> https://discordapp.com/channels/684395136175702065/686873224117485579/727877472850542663
+
+
+- Pour créer un model / migration User
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string,password:string,role:string
+
+- Pour créer un model / migration City
+npx sequelize-cli model:generate --name City --attributes name:string
+
+- Pour créer un model / migration Place
+npx sequelize-cli model:generate --name Place --attributes user:string,name:string,description:string,rooms:integer,bathrooms:integer,maxGuests:integer,priceByNight:integer,cityId:integer
+
+- Pour créer un model / migration Booking
+npx sequelize-cli model:generate --name Booking --attributes place:string,user:string,checkIn:date,checkOut:date,placeId:integer

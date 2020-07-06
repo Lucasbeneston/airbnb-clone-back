@@ -4,7 +4,7 @@ const router = require('./routes');
 
 const server = express();
 
-server.use(router);
+server.use('/api', router);
 
 const PORT = 8042;
 server.listen(PORT, () => {

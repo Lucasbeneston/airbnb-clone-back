@@ -2,12 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
-// const usersRouter = require('./users');
+const usersRouter = require('./users');
 
 router.use(bodyParser.json());
-// router.use(usersRouter);
+router.use(usersRouter);
 
-router.get('/api', (req, res) => {
+router.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello World !' });
 });
 
