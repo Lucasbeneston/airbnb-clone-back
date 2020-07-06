@@ -16,4 +16,17 @@ module.exports = {
       priceByNight,
     });
   },
+
+  getAllPlaces: () => {
+    return Place.findAll({
+      include: [
+        {
+          model: City,
+          attributes: ['name'],
+        },
+      ],
+      raw: true,
+      attributes: ['id', 'name', 'description', 'rooms', 'bathrooms', 'maxGuests', 'priceByNight'],
+    });
+  },
 };
