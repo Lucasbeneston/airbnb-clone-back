@@ -26,4 +26,16 @@ module.exports = {
       },
     });
   },
+
+  getUserByEmail: (email) => {
+    return User.findOne({
+      where: {
+        email,
+      },
+    });
+  },
+
+  checkPassword: (password, userPassword) => {
+    return bcrypt.compare(password, userPassword);
+  },
 };

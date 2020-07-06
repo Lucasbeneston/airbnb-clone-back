@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const usersCtrl = require('../controllers/usersCtrl');
+const jwtUtils = require('../utils/jwt.utils');
 
 router.post('/signup', async (req, res) => {
   const { firstName, email } = req.body;
@@ -34,8 +35,33 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-module.exports = router;
+router.post('/signin', async (req, res) => {
+  const { email, password } = req.body;
 
-// router.post('/signin', async (req, res) => {
-//   res.status(200).json({ message: 'Je suis la route POST/Signin' });
-// });
+  const userFound = await usersCtrl.getUserByEmail(email);
+
+  if (userFound) {
+    const isIdentified = await usersCtrl.checkPassword(password, userFound.password);
+    if (isIdentified) {
+      res.status(200).json({
+        token: jwtUtils.generateTokenForUser(userFound),
+        user: {
+          role: userFound.role,
+          firstName: userFound.firstname,
+          lastname: userFound.lastName,
+          email: userFound.email,
+        },
+      });
+    } else {
+      return res.status(401).json({
+        error: "Votre mot de passe n'est pas correct",
+      });
+    }
+  } else {
+    return res.status(401).json({
+      error: "Votre compte n'existe pas",
+    });
+  }
+});
+
+module.exports = router;
