@@ -19,6 +19,9 @@ module.exports = {
 
   getAllPlaces: () => {
     return Place.findAll({
+      where: {
+        cityId: 1,
+      },
       include: [
         {
           model: City,
