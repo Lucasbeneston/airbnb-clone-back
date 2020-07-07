@@ -1,7 +1,11 @@
 const express = require('express');
+// server.use(cors());
 
 const router = require('./routes');
 
+// server.use(cors());
+// server.use(morgan('dev'));
+// server.use(router);
 const server = express();
 
 server.use('/api', router);
