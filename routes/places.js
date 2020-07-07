@@ -58,7 +58,6 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
 
   const newPlace = await placesCtrl.addPlace(req.body);
   const cityFound = await citiesCtrl.getCityById(req.body.cityId);
-  console.log(cityFound);
 
   res.status(201).json({
     id: newPlace.id,
