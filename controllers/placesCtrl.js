@@ -25,6 +25,8 @@ module.exports = {
           attributes: ['name'],
         },
       ],
+      order: [['id', 'DESC']],
+      limit: 10,
       raw: true,
       attributes: ['id', 'name', 'description', 'rooms', 'bathrooms', 'maxGuests', 'priceByNight'],
     });
