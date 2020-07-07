@@ -21,6 +21,7 @@ module.exports = {
     return Place.findAll({
       where: {
         cityId: 1,
+        maxGuests: 1,
       },
       include: [
         {
