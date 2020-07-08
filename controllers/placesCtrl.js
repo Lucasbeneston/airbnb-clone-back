@@ -19,10 +19,10 @@ module.exports = {
 
   getAllPlaces: () => {
     return Place.findAll({
-      where: {
-        cityId: 1,
-        maxGuests: 1,
-      },
+      // where: {
+      //   cityId: 1,
+      //   maxGuests: 1,
+      // },
       include: [
         {
           model: City,
