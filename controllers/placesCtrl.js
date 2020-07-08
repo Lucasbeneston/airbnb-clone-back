@@ -57,13 +57,13 @@ module.exports = {
     });
   },
 
-  updatePlaceById: (id) => {
-    return Place.update(id, {
-      where: {
-        id,
-      },
-    });
-  },
+  // updatePlaceById: (id) => {
+  //   return Place.update(id, {
+  //     where: {
+  //       id,
+  //     },
+  //   });
+  // },
 
   deletePlaceById: (id) => {
     return Place.destroy({
