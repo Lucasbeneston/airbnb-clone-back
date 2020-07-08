@@ -4,11 +4,12 @@ const { Place, City } = models;
 
 module.exports = {
   addPlace: (data) => {
-    const { cityId, name, description, rooms, bathrooms, maxGuests, priceByNight } = data;
+    const { cityId, name, photos, description, rooms, bathrooms, maxGuests, priceByNight } = data;
 
     return Place.create({
       cityId,
       name,
+      photos,
       description,
       rooms,
       bathrooms,
@@ -32,7 +33,16 @@ module.exports = {
       order: [['id', 'DESC']],
       limit: 10,
       raw: true,
-      attributes: ['id', 'name', 'description', 'rooms', 'bathrooms', 'maxGuests', 'priceByNight'],
+      attributes: [
+        'id',
+        'name',
+        'photos',
+        'description',
+        'rooms',
+        'bathrooms',
+        'maxGuests',
+        'priceByNight',
+      ],
     });
   },
 
