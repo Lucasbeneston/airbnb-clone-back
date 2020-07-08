@@ -74,4 +74,32 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
   console.log(cityFound);
 });
 
+// PATCH/places permet de modifier une place selon son id
+// router.put('/places/:placeId', async (req, res) => {
+//   const placeFound = await placesCtrl.updatePlaceById(req.params.placeId);
+//   if (placeFound) {
+//     res.status(200).json({
+//       placeFound,
+//     });
+//   } else {
+//     return res.status(404).json({
+//       error: "Cette appartement n'existe pas",
+//     });
+//   }
+// });
+
+// DELETE/places permet de supprimer une place selon son id
+router.delete('/places/:placeId', async (req, res) => {
+  const placeFound = await placesCtrl.deletePlaceById(req.params.placeId);
+  if (placeFound) {
+    res.status(200).json({
+      message: 'Appartement supprimé avec succès',
+    });
+  } else {
+    return res.status(404).json({
+      error: "Cette appartement n'existe pas",
+    });
+  }
+});
+
 module.exports = router;
