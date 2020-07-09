@@ -5,7 +5,7 @@
     "database": "database_airbnb",
     "host": "localhost",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "8889"
   },
   "test": {
     "username": "root",
@@ -13,7 +13,7 @@
     "database": "database_test",
     "host": "localhost",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "8889"
   },
   "production": {
     "username": "root",
@@ -21,6 +21,6 @@
     "database": "database_production",
     "host": "localhost",
     "dialect": "mysql",
-    "port": "3306"
+    "port": "8889"
   }
 }

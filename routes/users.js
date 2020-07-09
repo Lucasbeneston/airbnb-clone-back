@@ -13,6 +13,7 @@ router.post('/signup', async (req, res) => {
       error: "Le champ firstName n'est pas renseigné",
     });
   }
+
   if (typeof firstName !== 'string') {
     return res.status(400).json({
       error: 'Le champ firstName doit être une chaîne de caractères',

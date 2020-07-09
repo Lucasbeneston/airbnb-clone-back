@@ -20,10 +20,10 @@ module.exports = {
 
   getAllPlaces: () => {
     return Place.findAll({
-      where: {
-        cityId: 1,
-        maxGuests: 1,
-      },
+      // where: {
+      //   cityId: 1,
+      //   maxGuests: 1,
+      // },
       include: [
         {
           model: City,
@@ -54,6 +54,22 @@ module.exports = {
           attributes: ['name'],
         },
       ],
+    });
+  },
+
+  // updatePlaceById: (id) => {
+  //   return Place.update(id, {
+  //     where: {
+  //       id,
+  //     },
+  //   });
+  // },
+
+  deletePlaceById: (id) => {
+    return Place.destroy({
+      where: {
+        id,
+      },
     });
   },
 };
