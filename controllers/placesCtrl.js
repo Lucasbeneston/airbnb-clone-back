@@ -1,3 +1,5 @@
+const { QueryTypes } = require('sequelize');
+
 const models = require('../models');
 
 const { Place, City } = models;
@@ -18,12 +20,20 @@ module.exports = {
     });
   },
 
-  getAllPlaces: () => {
+  getAllPlaces: async (data) => {
+    const where = {};
+    if (data) {
+      const cityFound = await City.findOne({
+        where: { name: data },
+        attributes: ['id'],
+        raw: true,
+      });
+      console.log('Console.log de cityFound :', cityFound);
+      console.log('Console.log de data :', data);
+      where.cityId = cityFound.id;
+    }
+
     return Place.findAll({
-      // where: {
-      //   cityId: 1,
-      //   maxGuests: 1,
-      // },
       include: [
         {
           model: City,
@@ -43,6 +53,7 @@ module.exports = {
         'maxGuests',
         'priceByNight',
       ],
+      where,
     });
   },
 

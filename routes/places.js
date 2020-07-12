@@ -30,7 +30,7 @@ router.get('/places/:placeId', async (req, res) => {
 
 // GET/places permet de récupérer toutes les places
 router.get('/places', async (req, res) => {
-  const placesFound = await placesCtrl.getAllPlaces();
+  const placesFound = await placesCtrl.getAllPlaces(req.query.city);
   res.status(200).json(placesFound);
 });
 
