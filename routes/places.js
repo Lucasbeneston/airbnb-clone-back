@@ -3,6 +3,7 @@ const express = require('express');
 const placesCtrl = require('../controllers/placesCtrl');
 const citiesCtrl = require('../controllers/citiesCtrl');
 const authMid = require('../utils/jwt.utils');
+const NOSTRING_REGEX = /^\d+$/;
 
 const router = express.Router();
 
@@ -37,9 +38,9 @@ router.get('/places', async (req, res) => {
 // POST/places permet de créer une nouvelle place
 router.post('/places', authMid.authenticateJWT, async (req, res) => {
   const { userRole } = req.user;
-  const { description, rooms } = req.body;
+  const { description, rooms, bathrooms, maxGuests, priceByNight } = req.body;
 
-  if (userRole === 'tourist') {
+  if (userRole !== 'host') {
     return res.status(403).json({
       message: "Vous n'êtes pas autorisé à accéder à cette ressource",
     });
@@ -51,10 +52,13 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
     });
   }
 
-  if (typeof rooms !== 'number') {
-    return res.status(400).json({
-      message: 'Le champ rooms doit être un nombre entier',
-    });
+  if (
+    !NOSTRING_REGEX.test(rooms) ||
+    !NOSTRING_REGEX.test(bathrooms) ||
+    !NOSTRING_REGEX.test(maxGuests) ||
+    !NOSTRING_REGEX.test(priceByNight)
+  ) {
+    return res.status(400).json({ message: 'Le champ doit être un nombre entier' });
   }
 
   const newPlace = await placesCtrl.addPlace(req.body);

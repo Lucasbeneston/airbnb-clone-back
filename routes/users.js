@@ -48,7 +48,7 @@ router.post('/signin', async (req, res) => {
         token: jwtUtils.generateTokenForUser(userFound),
         user: {
           role: userFound.role,
-          firstName: userFound.firstname,
+          firstName: userFound.firstName,
           lastname: userFound.lastName,
           email: userFound.email,
         },
