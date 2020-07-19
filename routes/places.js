@@ -3,6 +3,7 @@ const express = require('express');
 const placesCtrl = require('../controllers/placesCtrl');
 const citiesCtrl = require('../controllers/citiesCtrl');
 const authMid = require('../utils/jwt.utils');
+
 const NOSTRING_REGEX = /^\d+$/;
 
 const router = express.Router();
