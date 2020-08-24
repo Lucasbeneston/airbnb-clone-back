@@ -18,6 +18,7 @@ module.exports = {
     });
   },
 
+  //affiche 10 places dans un ordre descendant sur une page
   getAllPlaces: () => {
     return Place.findAll({
       // where: {

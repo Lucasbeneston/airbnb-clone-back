@@ -39,7 +39,7 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
   const { userRole } = req.user;
   const { description, rooms } = req.body;
 
-  if (userRole === 'tourist') {
+  if (userRole !== 'host') {
     return res.status(403).json({
       message: "Vous n'êtes pas autorisé à accéder à cette ressource",
     });
