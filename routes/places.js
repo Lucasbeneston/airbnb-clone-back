@@ -3,6 +3,9 @@ const express = require('express');
 const placesCtrl = require('../controllers/placesCtrl');
 const citiesCtrl = require('../controllers/citiesCtrl');
 const authMid = require('../utils/jwt.utils');
+const NotFoundError = require('../utils/errors/not_found_404_error');
+const ForbiddenError = require('../utils/errors/forbidden_403_error');
+const BadRequestError = require('../utils/errors/bad_request_400_error');
 
 const NOSTRING_REGEX = /^\d+$/;
 
@@ -24,9 +27,7 @@ router.get('/places/:placeId', async (req, res) => {
       priceByNight: placeFound.priceByNight,
     });
   } else {
-    return res.status(404).json({
-      error: "Cette appartement n'existe pas",
-    });
+    throw new NotFoundError('Ressource introuvable', "Désolé, cet appartement n'existe pas");
   }
 });
 
@@ -42,15 +43,14 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
   const { description, rooms, bathrooms, maxGuests, priceByNight } = req.body;
 
   if (userRole !== 'host') {
-    return res.status(403).json({
-      message: "Vous n'êtes pas autorisé à accéder à cette ressource",
-    });
+    throw new ForbiddenError(
+      'Accès non autorisé',
+      "Désolé, vous n'êtes pas autorisé à accéder à cette ressource"
+    );
   }
 
   if (description === null || description === undefined || description === '') {
-    return res.status(400).json({
-      message: "Le champ description n'est pas renseigné",
-    });
+    throw new BadRequestError('Mauvaise requête', "Le champ description n'est pas renseigné");
   }
 
   if (
@@ -59,7 +59,7 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
     !NOSTRING_REGEX.test(maxGuests) ||
     !NOSTRING_REGEX.test(priceByNight)
   ) {
-    return res.status(400).json({ message: 'Le champ doit être un nombre entier' });
+    throw new BadRequestError('Mauvaise requête', 'Le champ doit être un nombre entier');
   }
 
   const newPlace = await placesCtrl.addPlace(req.body);
@@ -87,9 +87,7 @@ router.post('/places', authMid.authenticateJWT, async (req, res) => {
 //       placeFound,
 //     });
 //   } else {
-//     return res.status(404).json({
-//       error: "Cette appartement n'existe pas",
-//     });
+// throw new NotFoundError('Ressource introuvable', "Désolé, cet appartement n'existe pas");
 //   }
 // });
 
@@ -101,9 +99,7 @@ router.delete('/places/:placeId', async (req, res) => {
       message: 'Appartement supprimé avec succès',
     });
   } else {
-    return res.status(404).json({
-      error: "Cette appartement n'existe pas",
-    });
+    throw new NotFoundError('Ressource introuvable', "Cet appartement n'existe pas");
   }
 });
 

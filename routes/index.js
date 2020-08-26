@@ -1,10 +1,12 @@
 const express = require('express');
+require('express-async-errors');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
 const usersRouter = require('./users');
 const placesRouter = require('./places');
 const citiesRouter = require('./cities');
+const { notFoundHandler, errorLogger, errorHandler } = require('../middlewares');
 
 router.use(bodyParser.json());
 router.use(usersRouter);
@@ -15,10 +17,8 @@ router.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello World !' });
 });
 
-router.get('*', (req, res) => {
-  res.status(404).json({
-    error: 'Oups ! Mauvaise route coquinou !',
-  });
-});
+router.use(notFoundHandler);
+router.use(errorLogger);
+router.use(errorHandler);
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 
+const ForbiddenError = require('./errors/forbidden_403_error');
+const UnauthorizedError = require('./errors/unauthorized_401_error');
+
 const JWT_SIGN_SECRET =
   '9gMQj5wdpSfYwDBWji3wJoVcXwgEXvaBXc1FFBJiY2yXI9447gzTgCA-kyWOkGTVlEQUuVDqdeKJLLWuHpuU-0GY3SzqwrxxrvkIl8l84HKItZWRFA1UxHh7r7LaF7xUZ';
 
@@ -25,8 +28,10 @@ module.exports = {
 
       jwt.verify(token, JWT_SIGN_SECRET, (err, user) => {
         if (err) {
-          console.log(err);
-          return res.sendStatus(403);
+          throw new ForbiddenError(
+            'Accès non autorisé',
+            "Désolé, vous n'êtes pas autorisé à accéder à cette ressource"
+          );
         }
 
         req.user = user;
@@ -34,9 +39,10 @@ module.exports = {
         next();
       });
     } else {
-      res.status(401).json({
-        error: 'Vous devez être connecté pour accéder à cette ressource',
-      });
+      throw new UnauthorizedError(
+        'utilisateur non authentifié ',
+        'Vous devez être connecté pour accéder à cette ressource'
+      );
     }
   },
 };
